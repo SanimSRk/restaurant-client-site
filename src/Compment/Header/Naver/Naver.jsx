@@ -7,8 +7,8 @@ const Naver = () => {
         to={'/'}
         className={({ isActive }) =>
           isActive
-            ? 'px-4  py-2  text-[#BB8506] font-semibold'
-            : 'font-semibold px-4  py-2 rounded-lg bg-base-100'
+            ? 'px-4  py-2  text-[#EEFF25] text-xl font-extrabold'
+            : 'font-extrabold px-4  py-2 text-xl text-white'
         }
       >
         Home
@@ -16,8 +16,8 @@ const Naver = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? 'px-4  py-2  text-[#BB8506]  font-semibold'
-            : 'font-semibold px-4  py-2 rounded-lg bg-base-100'
+            ? 'px-4  py-2  text-[#EEFF25] text-xl font-extrabold'
+            : 'font-extrabold px-4  py-2 text-xl text-white'
         }
       >
         CONTACT US
@@ -25,17 +25,18 @@ const Naver = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? 'px-4  py-2  text-[#BB8506] font-semibold'
-            : 'font-semibold px-4  py-2 rounded-lg bg-base-100'
+            ? 'px-4  py-2  text-[#EEFF25] text-xl font-extrabold'
+            : 'font-extrabold px-4  py-2 text-xl text-white'
         }
       >
         DASHBOARD
       </NavLink>
       <NavLink
+        to={'/menu'}
         className={({ isActive }) =>
           isActive
-            ? 'px-4  py-2  text-[#BB8506] font-semibold'
-            : 'font-semibold px-4  py-2 rounded-lg bg-base-100'
+            ? 'px-4  py-2  text-[#EEFF25] text-xl font-extrabold'
+            : 'font-extrabold px-4  py-2 text-xl text-white'
         }
       >
         Our Menu
@@ -43,8 +44,8 @@ const Naver = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? 'px-4  py-2  text-[#BB8506] font-semibold'
-            : 'font-semibold px-4  py-2 rounded-lg bg-base-100'
+            ? 'px-4  py-2  text-[#EEFF25] text-xl font-extrabold'
+            : 'font-extrabold px-4  py-2 text-xl text-white'
         }
       >
         Our Shop
@@ -53,7 +54,7 @@ const Naver = () => {
   );
   return (
     <div>
-      <div className="navbar  fixed z-10 max-w-screen-xl bg-opacity-30 text-white bg-black">
+      <div className="navbar  fixed z-10 max-w-screen-xl bg-opacity-30 text-white bg-[#15151599]">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -79,10 +80,13 @@ const Naver = () => {
               {navLinks}
             </ul>
           </div>
-          <a className=" text-2xl font-bold">TasteMingle</a>
+          <a className=" text-2xl font-bold gap-0">
+            {' '}
+            Taste<span className="text-[#CD9003]">Mingle</span>
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-5">{navLinks}</ul>
+          <ul className="menu menu-horizontal px-1 gap-1">{navLinks}</ul>
         </div>
         <div className="navbar-end">
           <a className="btn">Button</a>

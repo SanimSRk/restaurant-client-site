@@ -4,7 +4,8 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MainLayout from './layout/MainLayout.jsx';
 import Home from './Pages/Home/Home/Home.jsx';
-
+import OurMenu from './Pages/Menu/OurMenu/OurMenu.jsx';
+import { HelmetProvider } from 'react-helmet-async';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -14,14 +15,20 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home></Home>,
       },
+      {
+        path: '/menu',
+        element: <OurMenu></OurMenu>,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <div className="max-w-screen-xl mx-auto">
-      <RouterProvider router={router} />
-    </div>
+    <HelmetProvider>
+      <div className="max-w-screen-xl mx-auto">
+        <RouterProvider router={router} />
+      </div>
+    </HelmetProvider>
   </React.StrictMode>
 );

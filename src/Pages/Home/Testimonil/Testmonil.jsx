@@ -38,7 +38,7 @@ const Testmonil = () => {
           {reviwes.map((revi, index) => (
             <>
               <SwiperSlide key={index}>
-                <div className="w-2/3 mx-auto text-center mt-12">
+                <div className="w-2/3  mx-auto text-center mt-12">
                   <div className="text-center grid justify-center mb-7">
                     <Rating
                       style={{ maxWidth: 250 }}

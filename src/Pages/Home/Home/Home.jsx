@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import Banner from '../../../Compment/Header/Banner/Banner';
 import Categroy from '../Categroy/Categroy';
 import ChefRecomend from '../ChefRecomend/ChefRecomend';
@@ -10,6 +11,9 @@ import Testmonil from '../Testimonil/Testmonil';
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>TasteMingle-Home </title>
+      </Helmet>
       <Banner></Banner>
       <Categroy></Categroy>
       <HomeBanner></HomeBanner>
