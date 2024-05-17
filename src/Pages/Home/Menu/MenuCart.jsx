@@ -3,7 +3,12 @@ const MenuCart = ({ men }) => {
   return (
     <div className="flex gap-3 items-center p-4">
       <div>
-        <img className="w-[130px]" src={image} alt="" />
+        <img
+          style={{ borderRadius: '0 200px 200px 200px' }}
+          className="w-[130px]"
+          src={image}
+          alt=""
+        />
       </div>
       <div>
         <div className="flex justify-between">

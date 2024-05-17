@@ -7,7 +7,7 @@ const Naver = () => {
         to={'/'}
         className={({ isActive }) =>
           isActive
-            ? 'px-4  py-2  text-[#FF3811] border border-[#FF3811] font-semibold'
+            ? 'px-4  py-2  text-[#BB8506] font-semibold'
             : 'font-semibold px-4  py-2 rounded-lg bg-base-100'
         }
       >
@@ -16,7 +16,7 @@ const Naver = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? 'px-4  py-2  text-[#FF3811] border border-[#FF3811] font-semibold'
+            ? 'px-4  py-2  text-[#BB8506]  font-semibold'
             : 'font-semibold px-4  py-2 rounded-lg bg-base-100'
         }
       >
@@ -25,7 +25,7 @@ const Naver = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? 'px-4  py-2  text-[#FF3811] border border-[#FF3811] font-semibold'
+            ? 'px-4  py-2  text-[#BB8506] font-semibold'
             : 'font-semibold px-4  py-2 rounded-lg bg-base-100'
         }
       >
@@ -34,7 +34,7 @@ const Naver = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? 'px-4  py-2  text-[#FF3811] border border-[#FF3811] font-semibold'
+            ? 'px-4  py-2  text-[#BB8506] font-semibold'
             : 'font-semibold px-4  py-2 rounded-lg bg-base-100'
         }
       >
@@ -43,7 +43,7 @@ const Naver = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? 'px-4  py-2  text-[#FF3811] border border-[#FF3811] font-semibold'
+            ? 'px-4  py-2  text-[#BB8506] font-semibold'
             : 'font-semibold px-4  py-2 rounded-lg bg-base-100'
         }
       >
