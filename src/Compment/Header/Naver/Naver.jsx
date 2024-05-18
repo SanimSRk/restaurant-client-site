@@ -42,6 +42,7 @@ const Naver = () => {
         Our Menu
       </NavLink>
       <NavLink
+        to={'/order/salad'}
         className={({ isActive }) =>
           isActive
             ? 'px-4  py-2  text-[#EEFF25] text-xl font-extrabold'
