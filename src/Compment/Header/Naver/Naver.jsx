@@ -1,6 +1,9 @@
-import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const Naver = () => {
+  const { user, handileLogouts } = useContext(AuthContext);
   const navLinks = (
     <>
       <NavLink
@@ -53,6 +56,16 @@ const Naver = () => {
       </NavLink>
     </>
   );
+
+  const handileClikLogout = () => {
+    handileLogouts()
+      .then(res => {
+        console.log(res.user);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   return (
     <div>
       <div className="navbar  fixed z-10 max-w-screen-xl bg-opacity-30 text-white bg-[#15151599]">
@@ -82,15 +95,25 @@ const Naver = () => {
             </ul>
           </div>
           <a className=" text-2xl font-bold gap-0">
-            {' '}
             Taste<span className="text-[#CD9003]">Mingle</span>
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-1">{navLinks}</ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="navbar-end gap-3">
+          {user ? (
+            <p
+              onClick={handileClikLogout}
+              className="cursor-pointer text-xl font-semibold"
+            >
+              SIGN OUT
+            </p>
+          ) : (
+            <Link to={'/login'}>
+              <a className="btn">Login</a>
+            </Link>
+          )}
         </div>
       </div>
     </div>
