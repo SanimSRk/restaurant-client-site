@@ -5,7 +5,8 @@ import Swal from 'sweetalert2';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const SingUp = () => {
-  const { handileCreateAccount, handileLogouts } = useContext(AuthContext);
+  const { handileCreateAccount, handileLogouts, handileUpdateProfile } =
+    useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const {
@@ -16,8 +17,8 @@ const SingUp = () => {
   } = useForm();
 
   const onSubmit = data => {
-    const { email, password, name } = data;
-    console.log(email, password, name);
+    const { email, password, fullName, photo } = data;
+    console.log(email, password, fullName, photo);
     handileCreateAccount(email, password)
       .then(res => {
         console.log(res.user);
@@ -27,6 +28,9 @@ const SingUp = () => {
             title: 'Good job!',
             text: 'successfully account create!',
             icon: 'success',
+          });
+          handileUpdateProfile(fullName, photo).then(res => {
+            console.log(res.user);
           });
         }
         navigate(location?.state || '/login');
@@ -55,7 +59,7 @@ const SingUp = () => {
                   placeholder="Your Name"
                   className="input input-bordered  border-[#D1A054B3]"
                   required
-                  {...register('name', { required: true })}
+                  {...register('fullName', { required: true })}
                 />
               </div>
               <div className="form-control">
@@ -75,6 +79,24 @@ const SingUp = () => {
                   </a>
                 </label>
               </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo Url</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="photo url"
+                  className="input input-bordered border-[#D1A054B3]"
+                  required
+                  {...register('photo', { required: true })}
+                />
+                <label className="label">
+                  <a href="#" className="label-text-alt link link-hover">
+                    Forgot password?
+                  </a>
+                </label>
+              </div>
+
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
