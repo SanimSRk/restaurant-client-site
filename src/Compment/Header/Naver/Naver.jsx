@@ -1,9 +1,13 @@
 import { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { FaCartPlus } from 'react-icons/fa';
+import useCarts from '../../Hooks/useCart/useCarts';
 
 const Naver = () => {
   const { user, handileLogouts } = useContext(AuthContext);
+  const [cart] = useCarts();
+
   const navLinks = (
     <>
       <NavLink
@@ -11,7 +15,7 @@ const Naver = () => {
         className={({ isActive }) =>
           isActive
             ? 'px-4  py-2  text-[#EEFF25] text-xl font-extrabold'
-            : 'font-extrabold px-4  py-2 text-xl text-white'
+            : 'font-extrabold px-4  py-2 text-xl lg:text-white'
         }
       >
         Home
@@ -20,16 +24,17 @@ const Naver = () => {
         className={({ isActive }) =>
           isActive
             ? 'px-4  py-2  text-[#EEFF25] text-xl font-extrabold'
-            : 'font-extrabold px-4  py-2 text-xl text-white'
+            : 'font-extrabold px-4  py-2 text-xl lg:text-white'
         }
       >
         CONTACT US
       </NavLink>
       <NavLink
+        to={'dashborad'}
         className={({ isActive }) =>
           isActive
             ? 'px-4  py-2  text-[#EEFF25] text-xl font-extrabold'
-            : 'font-extrabold px-4  py-2 text-xl text-white'
+            : 'font-extrabold px-4  py-2 text-xl lg:text-white'
         }
       >
         DASHBOARD
@@ -39,7 +44,7 @@ const Naver = () => {
         className={({ isActive }) =>
           isActive
             ? 'px-4  py-2  text-[#EEFF25] text-xl font-extrabold'
-            : 'font-extrabold px-4  py-2 text-xl text-white'
+            : 'font-extrabold px-4  py-2 text-xl lg:text-white'
         }
       >
         Our Menu
@@ -49,11 +54,17 @@ const Naver = () => {
         className={({ isActive }) =>
           isActive
             ? 'px-4  py-2  text-[#EEFF25] text-xl font-extrabold'
-            : 'font-extrabold px-4  py-2 text-xl text-white'
+            : 'font-extrabold px-4  py-2 text-xl lg:text-white'
         }
       >
         Our Shop
       </NavLink>
+      <Link to={'/dashborad/myCarts'}>
+        <button className="flex">
+          <FaCartPlus className="text-4xl" />
+          <div className="badge badge-secondary">{cart.length}+</div>
+        </button>
+      </Link>
     </>
   );
 
@@ -68,7 +79,7 @@ const Naver = () => {
   };
   return (
     <div>
-      <div className="navbar  fixed z-10 max-w-screen-xl bg-opacity-30 text-white bg-[#15151599]">
+      <div className="navbar  fixed z-10 max-w-screen-xl bg-opacity-30 lg:text-white bg-[#15151599]">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

@@ -13,6 +13,13 @@ import SingUp from './Compment/FormReleted/Login/SingUp.jsx';
 
 import MainForms from './Compment/FormReleted/MainForms.jsx';
 import AuthProvider from './AuthProvider/AuthProvider.jsx';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Dashborads from './Dashbords/Dashborads.jsx';
+import MyCarts from './Dashbords/MyCart/MyCarts.jsx';
+
+const queryClient = new QueryClient();
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -46,15 +53,27 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: 'dashborad',
+    element: <Dashborads></Dashborads>,
+    children: [
+      {
+        path: 'myCarts',
+        element: <MyCarts></MyCarts>,
+      },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
       <AuthProvider>
-        <div className="max-w-screen-xl mx-auto">
-          <RouterProvider router={router} />
-        </div>
+        <QueryClientProvider client={queryClient}>
+          <div className="max-w-screen-xl mx-auto">
+            <RouterProvider router={router} />
+          </div>
+        </QueryClientProvider>
       </AuthProvider>
     </HelmetProvider>
   </React.StrictMode>
