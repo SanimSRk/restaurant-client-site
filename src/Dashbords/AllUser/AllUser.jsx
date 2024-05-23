@@ -1,17 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import useAxiosPublice from '../../Compment/Hooks/useAxiosPubice/useAxiosPublice';
 import SectionTitle from '../../Compment/SectionTitle/SectionTitle';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 import { FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Compment/Hooks/useAxiosSecure/useAxiosSecure';
 
 const AllUser = () => {
-  const axiosPubice = useAxiosPublice();
+  const axiosSecure = useAxiosSecure();
 
   const { data, refetch } = useQuery({
     queryKey: ['userss'],
     queryFn: async () => {
-      const res = await axiosPubice.get('/users');
+      const res = await axiosSecure.get('/users');
       return res?.data;
     },
   });
@@ -27,7 +27,7 @@ const AllUser = () => {
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.isConfirmed) {
-        axiosPubice.delete(`/users/${id}`).then(res => {
+        axiosSecure.delete(`/users/${id}`).then(res => {
           console.log(res.data);
           if (res?.data?.deletedCount > 0) {
             refetch();
@@ -53,7 +53,7 @@ const AllUser = () => {
       confirmButtonText: 'Yes, provide admin role!',
     }).then(result => {
       if (result.isConfirmed) {
-        axiosPubice.patch(`/users/admin/${id}`).then(res => {
+        axiosSecure.patch(`/users/admin/${id}`).then(res => {
           console.log(res.data);
           if (res?.data?.modifiedCount > 0) {
             refetch();

@@ -50,12 +50,14 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         setLoding(false);
         setUser(currentUser);
+
         const userInfo = { email: currentUser?.email };
+
         axiosPubice.post(`/jwt`, userInfo).then(res => {
           console.log(res.data);
 
           if (res?.data?.token) {
-            localStorage.setItem('token', userInfo);
+            localStorage.setItem('token', res?.data?.token);
           }
         });
       } else {

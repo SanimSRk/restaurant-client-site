@@ -16,9 +16,12 @@ import {
 } from 'react-icons/md';
 import { TfiMenuAlt } from 'react-icons/tfi';
 import { NavLink } from 'react-router-dom';
+import useAdmin from '../../Compment/Hooks/useAdmin/useAdmin';
 
 const DsNaver = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  console.log(isAdmin === true);
+
   return (
     <div className="uppercase font-medium w-[280px] h-full  min-h-[100vh] p-5 bg-[#D1A054]">
       <ul className="gap-6 grid">
