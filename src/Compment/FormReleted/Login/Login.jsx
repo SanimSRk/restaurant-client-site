@@ -8,13 +8,16 @@ import {
 } from 'react-simple-captcha';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import { FcGoogle } from 'react-icons/fc';
+import useAxiosPublice from '../../Hooks/useAxiosPubice/useAxiosPublice';
 
 const Login = () => {
   const [captchas, setCaptchas] = useState(null);
-  const { handileClickSingin } = useContext(AuthContext);
+  const { handileClickSingin, handileClickGoogle } = useContext(AuthContext);
   const [error, setError] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosPubice = useAxiosPublice();
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -55,6 +58,30 @@ const Login = () => {
       });
   };
 
+  const handileCkilGoogleLogin = () => {
+    handileClickGoogle()
+      .then(res => {
+        console.log(res.user);
+        const email = res?.user?.email;
+        const name = res?.user?.displayName;
+        const userInfo = { email, name };
+        if (res.user) {
+          axiosPubice.post('/users', userInfo).then(res => {
+            console.log(res.data);
+            Swal.fire({
+              title: 'Good job!',
+              text: 'successfully account create!',
+              icon: 'success',
+            });
+
+            navigate(location?.state || '/');
+          });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   return (
     <div>
       <div className="hero min-h-screen bg-[url(/authentication.png)]">
@@ -125,6 +152,15 @@ const Login = () => {
                 </Link>
               </p>
             </form>
+            <div className="px-7">
+              <button
+                onClick={handileCkilGoogleLogin}
+                className="btn w-full text-xl  border-[#D1A054] text-black"
+              >
+                {' '}
+                <FcGoogle className="text-3xl" /> Sign in with google{' '}
+              </button>
+            </div>
           </div>
         </div>
       </div>

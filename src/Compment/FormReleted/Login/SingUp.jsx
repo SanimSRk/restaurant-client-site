@@ -3,12 +3,19 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useAxiosPublice from '../../Hooks/useAxiosPubice/useAxiosPublice';
+import { FcGoogle } from 'react-icons/fc';
 
 const SingUp = () => {
-  const { handileCreateAccount, handileLogouts, handileUpdateProfile } =
-    useContext(AuthContext);
+  const {
+    handileCreateAccount,
+    handileLogouts,
+    handileUpdateProfile,
+    handileClickGoogle,
+  } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosPubice = useAxiosPublice();
   const {
     register,
     handleSubmit,
@@ -19,21 +26,52 @@ const SingUp = () => {
   const onSubmit = data => {
     const { email, password, fullName, photo } = data;
     console.log(email, password, fullName, photo);
+
+    const userInfo = { email, name: fullName };
+
     handileCreateAccount(email, password)
       .then(res => {
         console.log(res.user);
         if (res.user) {
-          handileLogouts();
-          Swal.fire({
-            title: 'Good job!',
-            text: 'successfully account create!',
-            icon: 'success',
-          });
-          handileUpdateProfile(fullName, photo).then(res => {
-            console.log(res.user);
+          handileUpdateProfile(fullName, photo).then(() => {
+            axiosPubice.post('/users', userInfo).then(res => {
+              console.log(res.data);
+              if (res.data.insertedId) {
+                Swal.fire({
+                  title: 'Good job!',
+                  text: 'successfully account create!',
+                  icon: 'success',
+                });
+                handileLogouts();
+                navigate(location?.state || '/login');
+              }
+            });
           });
         }
-        navigate(location?.state || '/login');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+  const handileClickGoogsingIn = () => {
+    handileClickGoogle()
+      .then(res => {
+        console.log(res.user);
+        const email = res?.user?.email;
+        const name = res?.user?.displayName;
+        const userInfo = { email, name };
+        if (res.user) {
+          axiosPubice.post('/users', userInfo).then(res => {
+            console.log(res.data);
+            Swal.fire({
+              title: 'Good job!',
+              text: 'successfully account create!',
+              icon: 'success',
+            });
+            handileLogouts();
+            navigate(location?.state || '/');
+          });
+        }
       })
       .catch(error => {
         console.log(error);
@@ -138,6 +176,15 @@ const SingUp = () => {
                 </Link>
               </p>
             </form>
+            <div>
+              <button
+                onClick={handileClickGoogsingIn}
+                className="btn w-full text-xl  border-[#D1A054] text-black"
+              >
+                {' '}
+                <FcGoogle /> Sign in with google{' '}
+              </button>
+            </div>
           </div>
         </div>
       </div>

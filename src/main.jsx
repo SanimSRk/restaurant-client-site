@@ -17,6 +17,8 @@ import AuthProvider from './AuthProvider/AuthProvider.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Dashborads from './Dashbords/Dashborads.jsx';
 import MyCarts from './Dashbords/MyCart/MyCarts.jsx';
+import PrivtedRoute from './PrivtedRoute/PrivtedRoute.jsx';
+import AllUser from './Dashbords/AllUser/AllUser.jsx';
 
 const queryClient = new QueryClient();
 
@@ -55,11 +57,20 @@ const router = createBrowserRouter([
   },
   {
     path: 'dashborad',
-    element: <Dashborads></Dashborads>,
+    element: (
+      <PrivtedRoute>
+        {' '}
+        <Dashborads></Dashborads>
+      </PrivtedRoute>
+    ),
     children: [
       {
         path: 'myCarts',
         element: <MyCarts></MyCarts>,
+      },
+      {
+        path: 'allUsers',
+        element: <AllUser></AllUser>,
       },
     ],
   },
