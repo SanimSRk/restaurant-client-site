@@ -3,8 +3,9 @@ import DsNaver from './DashbordNaver/DsNaver';
 
 const Dashborads = () => {
   return (
-    <div className="flex gap-6 w-full h-full">
+    <div className="flex gap-8 w-full h-full">
       <DsNaver></DsNaver>
+
       <div className="w-full">
         <Outlet></Outlet>
       </div>

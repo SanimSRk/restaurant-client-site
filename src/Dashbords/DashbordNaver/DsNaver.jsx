@@ -23,7 +23,7 @@ const DsNaver = () => {
   console.log(isAdmin === true);
 
   return (
-    <div className="uppercase font-medium w-[280px] h-full  min-h-[100vh] p-5 bg-[#D1A054]">
+    <div className="uppercase font-medium min-w-64 h-full  min-h-[100vh] p-5 bg-[#D1A054]">
       <ul className="gap-6 grid">
         {isAdmin ? (
           <>
@@ -34,12 +34,12 @@ const DsNaver = () => {
             <li className="flex gap-2 items-center">
               {' '}
               <MdOutlineAddRoad className="text-2xl" />
-              <NavLink>add items</NavLink>
+              <NavLink to={'addItems'}>add items</NavLink>
             </li>
             <li className="flex gap-2 items-center">
               {' '}
               <TfiMenuAlt className="text-2xl" />
-              <NavLink>manage items</NavLink>
+              <NavLink to={'manageItems'}>manage items</NavLink>
             </li>
             <li className="flex gap-2 items-center">
               {' '}
@@ -61,11 +61,11 @@ const DsNaver = () => {
             </li>
             <li className="flex gap-2 items-center">
               <FaCalculator className="text-2xl"></FaCalculator>
-              <NavLink>reservation</NavLink>
+              <NavLink to={'payment'}>reservation</NavLink>
             </li>
             <li className="flex gap-2 items-center">
               <MdPayment className="text-2xl"></MdPayment>
-              <NavLink>payment history</NavLink>
+              <NavLink to={'payment-hostry'}>payment history</NavLink>
             </li>
             <li className="flex gap-2 items-center">
               <BiCart className="text-2xl"></BiCart>

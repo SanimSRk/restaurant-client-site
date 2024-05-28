@@ -19,6 +19,12 @@ import Dashborads from './Dashbords/Dashborads.jsx';
 import MyCarts from './Dashbords/MyCart/MyCarts.jsx';
 import PrivtedRoute from './PrivtedRoute/PrivtedRoute.jsx';
 import AllUser from './Dashbords/AllUser/AllUser.jsx';
+import AddItems from './Dashbords/AddItem/AddItems.jsx';
+import AdminRoute from './PrivtedRoute/AdminRoute.jsx';
+import ManageItems from './Dashbords/ManageItems/ManageItems.jsx';
+import UpdateItems from './Dashbords/ManageItems/UpdateItems.jsx';
+import Payment from './Dashbords/Payment/Payment.jsx';
+import PaymentHostry from './Dashbords/PaymentHostry/PaymentHostry.jsx';
 
 const queryClient = new QueryClient();
 
@@ -56,7 +62,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: 'dashborad',
+    path: '/dashborad',
     element: (
       <PrivtedRoute>
         {' '}
@@ -69,8 +75,43 @@ const router = createBrowserRouter([
         element: <MyCarts></MyCarts>,
       },
       {
+        path: 'payment',
+        element: <Payment></Payment>,
+      },
+      {
+        path: 'payment-hostry',
+        element: <PaymentHostry></PaymentHostry>,
+      },
+      {
         path: 'allUsers',
-        element: <AllUser></AllUser>,
+        element: (
+          <AdminRoute>
+            {' '}
+            <AllUser></AllUser>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'addItems',
+        element: (
+          <AdminRoute>
+            <AddItems></AddItems>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'manageItems',
+        element: (
+          <AdminRoute>
+            <ManageItems></ManageItems>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'updates/:id',
+        element: <UpdateItems></UpdateItems>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/menuss/${params?.id}`),
       },
     ],
   },

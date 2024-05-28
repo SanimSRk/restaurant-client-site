@@ -3,6 +3,7 @@ import useCarts from '../../Compment/Hooks/useCart/useCarts';
 import SectionTitle from '../../Compment/SectionTitle/SectionTitle';
 import useAxiosSecure from '../../Compment/Hooks/useAxiosSecure/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const MyCarts = () => {
   const [cart, refetch] = useCarts();
@@ -51,6 +52,15 @@ const MyCarts = () => {
           {' '}
           total price: ${finlePrice}
         </h2>
+        {cart.length ? (
+          <Link to={'/dashborad/payment'}>
+            <button className="text-white bg-blue-500 btn">pay</button>
+          </Link>
+        ) : (
+          <button disabled className="text-white bg-blue-500 btn">
+            pay
+          </button>
+        )}
       </div>
 
       <div className="mt-8">
