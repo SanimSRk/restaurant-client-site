@@ -30,7 +30,6 @@ const Login = () => {
 
   const onSubmit = data => {
     const { email, password, captcha } = data;
-    console.log(email, password, captcha);
 
     if (validateCaptcha(captcha) !== true) {
       setCaptchas('Captcha Does Not Match');
@@ -73,7 +72,6 @@ const Login = () => {
               text: 'successfully account create!',
               icon: 'success',
             });
-
             navigate(location?.state || '/');
           });
         }

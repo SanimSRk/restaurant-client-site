@@ -31,7 +31,7 @@ const PaymentHostry = () => {
               <tr>
                 <th></th>
                 <th>EMAIL</th>
-                <th>CATEGORY</th>
+                <th>transactionId</th>
                 <th>TOTAL PRICE</th>
                 <th>PAYENT DATE</th>
               </tr>
@@ -44,7 +44,7 @@ const PaymentHostry = () => {
                       <label>{index + 1}</label>
                     </th>
                     <td>{itm?.email}</td>
-                    <td>{itm?.name}</td>
+                    <td>{itm?.transactionId}</td>
                     <td>${itm?.price}</td>
                     <th>{itm?.date}</th>
                   </tr>

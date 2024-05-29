@@ -4,6 +4,7 @@ import useAxiosSecure from '../../Compment/Hooks/useAxiosSecure/useAxiosSecure';
 import useCarts from '../../Compment/Hooks/useCart/useCarts';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const ChackOutForm = () => {
   const { user } = useContext(AuthContext);
@@ -15,6 +16,7 @@ const ChackOutForm = () => {
   const [clientSecret, SetClientSecret] = useState();
 
   const [transactionId, setTransactionId] = useState();
+  const navigate = useNavigate();
   const price = cart.reduce((total, item) => total + item?.price, 0);
 
   useEffect(() => {
@@ -79,8 +81,8 @@ const ChackOutForm = () => {
         };
 
         axiosSecure.post('/payments', payment).then(res => {
-          console.log(res.data.insertedId);
-          if (res.data) {
+          console.log(res.data);
+          if (res.data.insertedId) {
             Swal.fire({
               position: 'top-end',
               icon: 'success',
@@ -88,8 +90,9 @@ const ChackOutForm = () => {
               showConfirmButton: false,
               timer: 1500,
             });
+            navigate('/dashborad/payment-hostry');
+            refetch();
           }
-          refetch();
         });
       }
     }

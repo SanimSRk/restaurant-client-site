@@ -25,6 +25,8 @@ import ManageItems from './Dashbords/ManageItems/ManageItems.jsx';
 import UpdateItems from './Dashbords/ManageItems/UpdateItems.jsx';
 import Payment from './Dashbords/Payment/Payment.jsx';
 import PaymentHostry from './Dashbords/PaymentHostry/PaymentHostry.jsx';
+import AdminHome from './Dashbords/AdminHome/AdminHome.jsx';
+import UserHome from './Dashbords/UserHome/UserHome.jsx';
 
 const queryClient = new QueryClient();
 
@@ -83,6 +85,10 @@ const router = createBrowserRouter([
         element: <PaymentHostry></PaymentHostry>,
       },
       {
+        path: 'userHome',
+        element: <UserHome></UserHome>,
+      },
+      {
         path: 'allUsers',
         element: (
           <AdminRoute>
@@ -112,6 +118,14 @@ const router = createBrowserRouter([
         element: <UpdateItems></UpdateItems>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/menuss/${params?.id}`),
+      },
+      {
+        path: 'admin-home',
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
       },
     ],
   },

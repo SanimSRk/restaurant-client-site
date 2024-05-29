@@ -48,7 +48,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       if (currentUser) {
-        setLoding(false);
         setUser(currentUser);
 
         const userInfo = { email: currentUser?.email };
@@ -58,6 +57,7 @@ const AuthProvider = ({ children }) => {
 
           if (res?.data?.token) {
             localStorage.setItem('token', res?.data?.token);
+            setLoding(false);
           }
         });
       } else {

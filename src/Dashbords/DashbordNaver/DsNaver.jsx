@@ -20,7 +20,6 @@ import useAdmin from '../../Compment/Hooks/useAdmin/useAdmin';
 
 const DsNaver = () => {
   const [isAdmin] = useAdmin();
-  console.log(isAdmin === true);
 
   return (
     <div className="uppercase font-medium min-w-64 h-full  min-h-[100vh] p-5 bg-[#D1A054]">
@@ -29,7 +28,7 @@ const DsNaver = () => {
           <>
             <li className="flex gap-2 items-center">
               <FaHome className="text-2xl"></FaHome>
-              <NavLink>Admin Home</NavLink>
+              <NavLink to={'/dashborad/admin-home'}>Admin Home</NavLink>
             </li>
             <li className="flex gap-2 items-center">
               {' '}
@@ -57,7 +56,7 @@ const DsNaver = () => {
             <li className="flex gap-2 items-center">
               {' '}
               <FaHome className="text-2xl"></FaHome>
-              <NavLink>User Home</NavLink>
+              <NavLink to={'/dashborad/userHome'}>User Home</NavLink>
             </li>
             <li className="flex gap-2 items-center">
               <FaCalculator className="text-2xl"></FaCalculator>

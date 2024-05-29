@@ -3,11 +3,12 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { FaCartPlus } from 'react-icons/fa';
 import useCarts from '../../Hooks/useCart/useCarts';
+import useAdmin from '../../Hooks/useAdmin/useAdmin';
 
 const Naver = () => {
   const { user, handileLogouts } = useContext(AuthContext);
   const [cart] = useCarts();
-
+  const [isAdmin] = useAdmin();
   const navLinks = (
     <>
       <NavLink
@@ -29,16 +30,18 @@ const Naver = () => {
       >
         CONTACT US
       </NavLink>
-      <NavLink
-        to={'dashborad'}
-        className={({ isActive }) =>
-          isActive
-            ? 'px-4  py-2  text-[#EEFF25] text-xl font-extrabold'
-            : 'font-extrabold px-4  py-2 text-xl lg:text-white'
-        }
-      >
-        DASHBOARD
-      </NavLink>
+      {user && (
+        <NavLink
+          to={isAdmin ? '/dashborad/admin-home' : '/dashborad/userHome'}
+          className={({ isActive }) =>
+            isActive
+              ? 'px-4  py-2  text-[#EEFF25] text-xl font-extrabold'
+              : 'font-extrabold px-4  py-2 text-xl lg:text-white'
+          }
+        >
+          DASHBOARD
+        </NavLink>
+      )}
       <NavLink
         to={'/menu'}
         className={({ isActive }) =>
